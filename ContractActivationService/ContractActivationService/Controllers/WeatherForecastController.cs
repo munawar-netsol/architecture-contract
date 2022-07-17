@@ -31,7 +31,7 @@ public class WeatherForecastController : ControllerBase
         //var url = "http://host.docker.internal:5002/WeatherForecast";
 
         // With Docker compose file and access ctm from Host machine.
-        var url = "http://start_contract-modification-service_1/WeatherForecast";
+        var url = "http://contract-modification-service/WeatherForecast";
 
         var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
         var httpClient = _httpClientFactory.CreateClient();

@@ -67,8 +67,3 @@ D:\Project\Start\ContractActivationService\ContractActivationService\obj\Release
 D:\Project\Start\ContractActivationService\ContractActivationService\obj\Release\net6.0\ContractActivationService.pdb
 D:\Project\Start\ContractActivationService\ContractActivationService\obj\Release\net6.0\ContractActivationService.genruntimeconfig.cache
 D:\Project\Start\ContractActivationService\ContractActivationService\obj\Release\net6.0\ref\ContractActivationService.dll
-D:\Project\Start\ContractActivationService\ContractActivationService\bin\Release\net6.0\app\publish\web.config
-D:\Project\Start\ContractActivationService\ContractActivationService\bin\Release\net6.0\app\publish\appsettings.Development.json
-D:\Project\Start\ContractActivationService\ContractActivationService\bin\Release\net6.0\app\publish\appsettings.json
-D:\Project\Start\ContractActivationService\ContractActivationService\bin\Release\net6.0\app\publish\ContractActivationService.deps.json
-D:\Project\Start\ContractActivationService\ContractActivationService\bin\Release\net6.0\app\publish\ContractActivationService.runtimeconfig.json

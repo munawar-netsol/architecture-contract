@@ -1,11 +1,6 @@
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\ContractActivationService.exe
-D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\app\publish\web.config
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\appsettings.Development.json
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\appsettings.json
-D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\app\publish\appsettings.Development.json
-D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\app\publish\appsettings.json
-D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\app\publish\ContractActivationService.deps.json
-D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\app\publish\ContractActivationService.runtimeconfig.json
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\Dockerfile
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\ContractActivationService.dll
 D:\Project\Start\ContractActivationService\ContractActivationService\app\publish\ContractActivationService.runtimeconfig.json

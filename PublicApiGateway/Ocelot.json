@@ -24,7 +24,7 @@
   "Aggregates": [],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "host.docker.internal",
+      "Host": "consul",
       "Port": 8500,
       "Type": "Consul",
       "Token": null,

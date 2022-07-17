@@ -1,11 +1,33 @@
 version: "3.9"
 services:
-    contract-activation-service:
-        build: ContractActivationService\ContractActivationService\app\publish
+    consul:
+        image: consul
+        container_name: consul
+        restart: always
         ports:
-            - "5001:80"
+          - "8500:8500"
+        command: "agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0"
 
     contract-modification-service:
+        container_name: contract-modification-service
         build: ContractModificationService\app\publish
         ports:
             - "5002:80"
+        depends_on:
+        - consul
+
+    contract-activation-service:
+        container_name: contract-activation-service
+        build: ContractActivationService\ContractActivationService\app\publish
+        ports:
+            - "5001:80"
+        depends_on:
+        - consul
+
+    api-gateway-services:
+        container_name: api-gateway-services
+        build: PublicApiGateway\app\publish
+        ports:
+            - "5000:80"
+        depends_on:
+        - consul
