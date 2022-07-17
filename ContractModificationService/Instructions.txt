@@ -1,0 +1,41 @@
+ContractModificationService Creation
+------------------------------------
+dotnet new webapi -n ContractModificationService
+cd ContractModificationService
+dotnet new sln
+dotnet sln add ContractModificationService.csproj
+dotnet add package Consul
+
+Consul Configuration for Auto Service Registration
+--------------------------------------------------
+-> Goto appsettings.Development.json
+   -> Configure ServiceName, Id, URL.
+   -> Configure Consul
+   
+-> Install Consul on docker:
+   -> $docker pull consul
+   -> $docker run -d     -p 8500:8500     -p 8600:8600/udp     --name=badger     consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+   
+-> Access:
+  -> http://localhost:8500/ in UI
+  -> Goto Services tab.
+
+-> Create ServiceRegExtension.cs and create RegisterConsul Extension Method.
+   -> Use ConsulClient and give address and parameters from configuration and then:
+   -> Call: consulClient.Agent.ServiceDeregister(registration.ID).Wait();
+            consulClient.Agent.ServiceRegister(registration).Wait();
+
+-> Call in Program.cs: 
+   -> app.RegisterConsul(app.Lifetime, builder.Configuration);
+
+-> Check Consul from within Docker container:
+   -> docker ps
+   -> docker exec -it fbf478f97be0 /bin/sh
+   -> # consul services deregister weatherForecast-1
+   -> Check other commands: https://www.consul.io/
+
+
+Docker Publish:
+---------------
+> dotnet publish "ContractModificationService.csproj" -c Release -o app/publish
+> cd app/publish && docker build -t foo . && docker run -dp 5002:80 foo && cd.. && cd..

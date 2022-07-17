@@ -1,0 +1,82 @@
+ContractActivationService Creation
+-------------------------
+dotnet new webapi -n ContractActivationService
+dotnet new sln 
+dotnet sln add ContractActivationService/ContractActivationService.csproj
+cd ContractActivationService
+dotnet add package Consul
+dotnet add package Newtonsoft.Json --version 13.0.1
+dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson --version 6.0.6
+
+cd..
+dotnet new classlib -o ContractDataAccessLibrary
+dotnet sln add ContractDataAccessLibrary/ContractDataAccessLibrary.csproj
+cd ContractDataAccessLibrary
+dotnet add package Microsoft.EntityFrameworkCore --version 6.0.6
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.6
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.6
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.6
+
+
+Consul Configuration for Auto Service Registration
+--------------------------------------------------
+-> Goto appsettings.Development.json
+   -> Configure ServiceName, Id, URL.
+   -> Configure Consul
+   
+-> Install Consul on docker:
+   -> $docker pull consul
+   -> $docker run -d     -p 8500:8500     -p 8600:8600/udp     --name=api-discovery     consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+   
+-> Access:
+  -> http://localhost:8500/ in UI
+  -> Goto Services tab.
+
+-> Create ServiceRegExtension.cs and create RegisterConsul Extension Method.
+   -> Use ConsulClient and give address and parameters from configuration and then:
+   -> Call: consulClient.Agent.ServiceDeregister(registration.ID).Wait();
+            consulClient.Agent.ServiceRegister(registration).Wait();
+
+-> Call in Program.cs: 
+   -> app.RegisterConsul(app.Lifetime, builder.Configuration);
+
+-> Check Consul from within Docker container:
+   -> docker ps
+   -> docker exec -it fbf478f97be0 /bin/sh
+   -> # consul services deregister weatherForecast-1
+   -> Check other commands: https://www.consul.io/
+
+
+HttpClient Implementation
+-------------------------
+GetClient implementation
+
+
+Database First Approach
+-----------------------
+Goto Tools > Nuget Package Manager > Package Manager Console.
+PM> Scaffold-DbContext  -Connection name=Default -Provider Microsoft.EntityFrameworkCore.SqlServer
+
+For Specific Tables:
+-> Table names are case-sensitive.
+-> -f is for force override if table model already exists.
+PM> Scaffold-DbContext  -Connection name=Default -Provider Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -t CONT, CONT_ASET -f
+
+
+
+
+Scaffold-DbContext "Server=(localdb)\v11.0;Database=MyDB;Trusted_Connection=True;" 
+
+
+Docker Publish:
+---------------
+> dotnet publish "ContractActivationService.csproj" -c Release -o app/publish
+> cd app/publish && docker build -t foo . && docker run -dp 5001:80 foo && cd.. && cd..
+
+Connected Docker with SQL Server on Host
+----------------------------------------
+Do these configurations:
+https://stackoverflow.com/questions/50166869/connect-to-sql-server-in-local-machine-host-from-docker-using-host-docker-inte
+https://stackoverflow.com/questions/19451490/how-to-identify-port-number-of-sql-server
+https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver16
+https://stackoverflow.com/questions/3583605/login-failed-for-user-sa-the-user-is-not-associated-with-a-trusted-sql-server

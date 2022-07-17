@@ -1,0 +1,34 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/Contract",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/ContractActivation/GetContract",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ServiceName": "ContractActivationService",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/WeatherForecast",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/ContractModification/GetContract",
+      "UpstreamHttpMethod": [ "Get" ],
+      "ServiceName": "ContractModificationService",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "Aggregates": [],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "host.docker.internal",
+      "Port": 8500,
+      "Type": "Consul",
+      "Token": null,
+      "ConfigurationKey": null
+    }
+  }
+}

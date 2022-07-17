@@ -1,0 +1,44 @@
+Project Creation
+----------------
+dotnet new webapi -n PublicApiGateway
+cd PublicApiGateway
+dotnet new sln 
+dotnet sln add PublicApiGateway.csproj
+dotnet add package Ocelot
+dotnet add package Ocelot.Provider.Consul
+
+Project Configuration
+---------------------
+Create ocelot.json and ocelot.Development.json:
+-> Define routes in both files.
+-> With DownstreamPathTemplate as the actual service, UpstreamPathTemplate as it's alias route.
+
+In Program.cs:
+--------------
+-> using Ocelot.DependencyInjection;
+-> using Ocelot.Middleware;
+-> using Ocelot.Provider.Consul;
+
+-> builder.Services.AddOcelot().AddConsul();
+-> builder.Configuration.AddJsonFile("appsettings.json", true, true);
+-> builder.Configuration.AddJsonFile($"appsettings.{builder.Configuration["ASPNETCORE_ENVIRONMENT"]}.json", true, true);
+-> builder.Configuration.AddJsonFile("ocelot.json");
+-> builder.Configuration.AddJsonFile($"ocelot.{builder.Configuration["ASPNETCORE_ENVIRONMENT"]}.json");
+-> and then : app.UseOcelot().Wait();
+
+Update Ocelot.json
+------------------
+For Consul:
+-> Add: ServiceDiscoveryProvider in GlobalConfiguration.
+-> "ServiceName": "ContractActivation"
+
+Service Discovery:
+------------------
+docker pull consul
+docker run -d -p 8500:8500 -p 8600:8600/udp --name=api_discovery  consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
+
+
+Docker Publish:
+---------------
+> dotnet publish "PublicApiGateway.csproj" -c Release -o app/publish
+> cd app/publish && docker build -t foo . && docker run -dp 5000:80 foo && cd.. && cd..
