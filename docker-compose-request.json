@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "28c20979-eac7-42f0-8a0d-8ca85de35d63",
+		"name": "MyProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetContracts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/Contract",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Contract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostContracts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContNumb\": \"N123\",\r\n    \"ContAsets\": [{\r\n        \"VinNumb\": \"Y456\",\r\n        \"ModlNme\": \"HIDS\"\r\n    }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/Contract",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Contract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetContractById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/Contract/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Contract",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForecast-ContractModificationService",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5002/WeatherForecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5002",
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CTA-Access CTM Weather",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/WeatherForecast",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"WeatherForecast"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_hit_CTM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ContractModification/GetContract",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ContractModification",
+						"GetContract"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API_Gateway_hit_CTA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/ContractActivation/GetContract",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"ContractActivation",
+						"GetContract"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
