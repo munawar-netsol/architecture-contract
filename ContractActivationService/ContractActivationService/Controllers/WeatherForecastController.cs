@@ -24,7 +24,16 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
-        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, "http://host.docker.internal:5002/WeatherForecast");
+        // Local debug
+        //var url = "https://localhost:9002/WeatherForecast"; 
+
+        // With Docker files and access ctm from Host machine.
+        //var url = "http://host.docker.internal:5002/WeatherForecast";
+
+        // With Docker compose file and access ctm from Host machine.
+        var url = "http://start_contract-modification-service_1/WeatherForecast";
+
+        var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, url);
         var httpClient = _httpClientFactory.CreateClient();
         var httpResponseMessage = await httpClient.SendAsync(httpRequestMessage);
 

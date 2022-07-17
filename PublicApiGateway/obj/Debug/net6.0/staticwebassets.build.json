@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nQbEMMn9mqnIgw+mjvalcXU1lup10+sYwSNEx7eb2Us=",
+  "Source": "PublicApiGateway",
+  "BasePath": "_content/PublicApiGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
