@@ -1,3 +1,5 @@
 $ cat .gitignore
 # exclude everything except directory foo/bar
 **/app/publish
+**/bin
+**/obj
