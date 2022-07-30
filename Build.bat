@@ -15,4 +15,11 @@ rmdir app /s /Q
 dotnet publish "PublicApiGateway.csproj" -c Release -o app/publish
 cd..
 
+cd Microflows
+cd MicroflowsConfiguration
+rmdir app /s /Q
+dotnet publish "MicroflowsConfiguration.csproj" -c Release -o app/publish
+cd..
+cd..
+
 docker-compose up --build -d

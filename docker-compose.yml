@@ -7,6 +7,13 @@ services:
         ports:
           - "8500:8500"
         command: "agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0"
+        
+    rabbitmq-transit:
+        image: masstransit/rabbitmq
+        container_name: rabbitmq-transit
+        ports:
+            - "5672:5672"
+            - "15672:15672"
 
     contract-modification-service:
         container_name: contract-modification-service
@@ -15,6 +22,7 @@ services:
             - "5002:80"
         depends_on:
         - consul
+        - rabbitmq-transit
 
     contract-activation-service:
         container_name: contract-activation-service
@@ -23,6 +31,7 @@ services:
             - "5001:80"
         depends_on:
         - consul
+        - rabbitmq-transit
 
     api-gateway-services:
         container_name: api-gateway-services
@@ -31,3 +40,14 @@ services:
             - "5000:80"
         depends_on:
         - consul
+        - rabbitmq-transit
+
+    microflows:
+        container_name: microflows
+        build: Microflows\MicroflowsConfiguration\app\publish
+        ports:
+            - "7000:80"
+        depends_on:
+        - consul
+        - rabbitmq-transit
+
