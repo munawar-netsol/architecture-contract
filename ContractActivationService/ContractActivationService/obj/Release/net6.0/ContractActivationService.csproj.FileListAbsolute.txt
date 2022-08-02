@@ -137,3 +137,7 @@ D:\Project\architecture-contract\ContractActivationService\ContractActivationSer
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\obj\Release\net6.0\ContractActivationService.genruntimeconfig.cache
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\obj\Release\net6.0\ref\ContractActivationService.dll
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\RabbitMQ.Client.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.Abstractions.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.RabbitMqTransport.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\System.Text.Json.dll

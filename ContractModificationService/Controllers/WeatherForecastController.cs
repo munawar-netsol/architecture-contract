@@ -16,6 +16,7 @@ public class WeatherForecastController : ControllerBase
     public WeatherForecastController(ILogger<WeatherForecastController> logger)
     {
         _logger = logger;
+        _logger.LogInformation("Received Text: {Text}", "123");
     }
 
     [HttpGet(Name = "GetWeatherForecast")]

@@ -1,5 +1,9 @@
 using ContractDataAccessLibrary;
+using Contracts;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Publisher.Helpers;
+using RabbitMQ.Client;
 using ServiceRegistration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +21,32 @@ builder.Services.AddDbContext<ContractActivationContext>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
 
+        //cfg.AutoStart = true;
+
+        if (builder.Configuration.GetSection("MassTransit")["host"] == "localhost")
+            cfg.Host("localhost", "/", h => {
+                h.Username("guest");
+                h.Password("guest");
+            });
+        else
+            cfg.Host("rabbitmq", "/", h => {
+                h.Username("guest");
+                h.Password("guest");
+            });
+
+        cfg.ConfigurePublisherContracts();
+        cfg.ConfgurePublisherContract<ContractSubmitMessageEnvelop>("submitorder", ExchangeType.Direct);
+        cfg.ConfgurePublisherContract<ContractCreateMessageEnvelop>("createorder", ExchangeType.Direct);
+        cfg.ConfigureEndpoints(context);
+
+    });
+    //services.AddHostedService<Worker>();
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

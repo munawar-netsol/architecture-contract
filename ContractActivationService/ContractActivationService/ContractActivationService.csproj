@@ -35,4 +35,9 @@
     <ProjectReference Include="..\ContractDataAccessLibrary\ContractDataAccessLibrary.csproj" />
   </ItemGroup>
 
+	<ItemGroup>
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.0.5" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
+		<PackageReference Include="MassTransit" Version="8.0.5" />
+	</ItemGroup>
 </Project>

@@ -1,5 +1,8 @@
+using Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Publisher.Events.Publishers;
 
 namespace ContractActivationService.Controllers;
 
@@ -14,13 +17,25 @@ public class WeatherForecastController : ControllerBase
 
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<WeatherForecastController> _logger;
-
-    public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpClientFactory httpClientFactory)
+    private readonly IBus _bus;
+    public WeatherForecastController(ILogger<WeatherForecastController> logger, IHttpClientFactory httpClientFactory, IBus bus, IRequestClient<ContractCreateMessageEnvelop> requestClient)
     {
         _logger = logger;
+        _bus = bus;
         _httpClientFactory = httpClientFactory;
     }
+    [Route("MyIndex")]
+    public async Task<IEnumerable<WeatherForecast>> GetForecast()
+    {        
+        await SubmitContractEvents.SubmitContract(_bus);
 
+        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Date = DateTime.Now.AddDays(index),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+        });
+    }
     [HttpGet(Name = "GetWeatherForecast")]
     public async Task<IEnumerable<WeatherForecast>> Get()
     {
