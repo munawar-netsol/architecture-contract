@@ -76,8 +76,8 @@ builder.Services.AddMassTransit(x =>
             x.UsingAmazonSqs((context, cfg) =>
             {
                 cfg.Host("us-east-1", h => {
-                    h.AccessKey("AKIAXERWNUJ2EAHW33UP");
-                    h.SecretKey("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");
+                    h.AccessKey("access-id");
+                    h.SecretKey("secret-id");
                 });
 
                 cfg.ConfigureEndpoints(context);
