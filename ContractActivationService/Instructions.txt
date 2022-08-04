@@ -28,6 +28,10 @@ Consul Configuration for Auto Service Registration
    -> $docker pull consul
    -> $docker run -d     -p 8500:8500     -p 8600:8600/udp     --name=api-discovery     consul agent -server -ui -node=server-1 -bootstrap-expect=1 -client=0.0.0.0
    
+-> Install RabbitMQ on docker:
+   -> https://masstransit-project.com/quick-starts/rabbitmq.html
+docker run -it --rm --name masstransit_rabbitmq -d -p 5672:5672 -p 15672:15672 masstransit/rabbitmq
+
 -> Access:
   -> http://localhost:8500/ in UI
   -> Goto Services tab.

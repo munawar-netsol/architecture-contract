@@ -141,3 +141,7 @@ D:\Project\architecture-contract\ContractActivationService\ContractActivationSer
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.Abstractions.dll
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.RabbitMqTransport.dll
 D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\System.Text.Json.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\AWSSDK.Core.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\AWSSDK.SimpleNotificationService.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\AWSSDK.SQS.dll
+D:\Project\architecture-contract\ContractActivationService\ContractActivationService\bin\Release\net6.0\MassTransit.AmazonSqsTransport.dll
