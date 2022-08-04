@@ -14,10 +14,7 @@ services:
         ports:
             - "5672:5672"
             - "15672:15672"
-        environment:            
-            RABBITMQ_DEFAULT_USER: guest
-            RABBITMQ_DEFAULT_PASS: guest
-            
+        
     contract-modification-service:
         container_name: contract-modification-service
         build: ContractModificationService\app\publish
@@ -26,6 +23,10 @@ services:
         depends_on:
         - consul
         - rabbitmq
+        env_file: env-secret-configurations.env
+        environment:            
+            AWS-ACCESS-ID: ${accessid}
+            AWS-SECRET-ID: ${secretid}
 
     contract-activation-service:
         container_name: contract-activation-service
@@ -35,6 +36,10 @@ services:
         depends_on:
         - consul
         - rabbitmq
+        env_file: env-secret-configurations.env
+        environment:            
+            AWS-ACCESS-ID: ${accessid}
+            AWS-SECRET-ID: ${secretid}
 
     api-gateway-services:
         container_name: api-gateway-services

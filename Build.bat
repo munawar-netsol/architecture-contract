@@ -22,4 +22,5 @@ dotnet publish "MicroflowsConfiguration.csproj" -c Release -o app/publish
 cd..
 cd..
 
-docker-compose up --build -d
+docker compose --env-file env-secret-configurations.env up --build -d
+

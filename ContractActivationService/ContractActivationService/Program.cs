@@ -66,9 +66,11 @@ builder.Services.AddMassTransit(x =>
         {
             x.UsingAmazonSqs((context, cfg) =>
             {
+                var accessId = Environment.GetEnvironmentVariable("AWS-ACCESS-ID");
+                var secretId = Environment.GetEnvironmentVariable("AWS-SECRET-ID");
                 cfg.Host("us-east-1", h => {
-                    h.AccessKey("access-id");
-                    h.SecretKey("secret-id");
+                    h.AccessKey(accessId);
+                    h.SecretKey(secretId);
                 });
 
                 cfg.ConfigureEndpoints(context);
