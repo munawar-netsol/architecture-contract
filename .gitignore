@@ -5,3 +5,4 @@ obj
 publish
 .env
 env-secret-configurations.env
+vs
