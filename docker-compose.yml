@@ -33,7 +33,7 @@ services:
         depends_on:
         - consul
         - rabbitmq
-        env_file: env-secret-configurations.env
+        
 
     api-gateway-services:
         container_name: api-gateway-services
