@@ -14,7 +14,7 @@ pipeline {
 												
 						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o Microflows/app/publish'
 						
-						sh 'docker compose up  -f docker-compose-jenkins.yml  --build -d'
+						sh 'docker compose up  --file=docker-compose-jenkins.yml  --build -d'
 						
 					}
 					
