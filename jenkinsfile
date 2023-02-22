@@ -10,9 +10,9 @@ pipeline {
 						
 						sh 'dotnet publish "ContractModificationService/ContractModificationService.csproj" -c Release -o app/publish'
 						
-						sh 'dotnet publish "PublicApiGateway/PublicApiGateway.csproj" -c Release -o app/publish" -c Release -o app/publish'
+						sh 'dotnet publish "PublicApiGateway/PublicApiGateway.csproj" -c Release -o app/publish'
 												
-						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o app/publish" -c Release -o app/publish'
+						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o app/publish'
 						
 						sh 'docker compose up --build -d'
 						
