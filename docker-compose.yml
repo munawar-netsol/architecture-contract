@@ -46,7 +46,7 @@ services:
 
     microflows:
         container_name: microflows
-        build: Microflows/MicroflowsConfiguration/app/publish
+        build: Microflows/app/publish
         ports:
             - "7000:80"
         depends_on:
