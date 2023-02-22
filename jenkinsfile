@@ -6,13 +6,13 @@ pipeline {
 			parallel {
 				stage('Code Build') {
 					steps {
-						sh 'dotnet publish "ContractActivationService/ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'
+						sh 'dotnet publish "ContractActivationService/ContractActivationService/ContractActivationService.csproj" -c Release -o ContractActivationService/app/publish'
 						
-						sh 'dotnet publish "ContractModificationService/ContractModificationService.csproj" -c Release -o app/publish'
+						sh 'dotnet publish "ContractModificationService/ContractModificationService.csproj" -c Release -o ContractModificationService/app/publish'
 						
-						sh 'dotnet publish "PublicApiGateway/PublicApiGateway.csproj" -c Release -o app/publish'
+						sh 'dotnet publish "PublicApiGateway/PublicApiGateway.csproj" -c Release -o PublicApiGateway/app/publish'
 												
-						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o app/publish'
+						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o Microflows/app/publish'
 						
 						sh 'docker compose up --build -d'
 						

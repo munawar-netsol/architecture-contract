@@ -17,7 +17,7 @@ services:
         
     contract-modification-service:
         container_name: contract-modification-service
-        build: ContractModificationService\ContractModificationService\app\publish
+        build: ContractModificationService\app\publish
         ports:
             - "5002:80"
         depends_on:
@@ -37,7 +37,7 @@ services:
 
     api-gateway-services:
         container_name: api-gateway-services
-        build: PublicApiGateway\PublicApiGateway\app\publish
+        build: PublicApiGateway\app\publish
         ports:
             - "5000:80"
         depends_on:
