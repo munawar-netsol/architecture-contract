@@ -6,7 +6,16 @@ pipeline {
 			parallel {
 				stage('Code Build') {
 					steps {
-						sh 'dotnet publish "ContractActivationService/ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'						
+						sh 'dotnet publish "ContractActivationService/ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'
+						
+						sh 'dotnet publish "ContractModificationService/ContractModificationService.csproj" -c Release -o app/publish'
+						
+						sh 'dotnet publish "PublicApiGateway/PublicApiGateway.csproj" -c Release -o app/publish" -c Release -o app/publish'
+												
+						sh 'dotnet publish "Microflows/MicroflowsConfiguration/MicroflowsConfiguration.csproj" -c Release -o app/publish" -c Release -o app/publish'
+						
+						docker compose --env-file env-secret-configurations.env up --build -d
+						
 					}
 					
 				}

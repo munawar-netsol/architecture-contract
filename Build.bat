@@ -1,7 +1,7 @@
 cd ContractActivationService
 cd ContractActivationService
 rmdir app /s /Q
-dotnet publish "ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish
+dotnet publish "ContractActivationService.csproj" -c Release -o app/publish
 cd..
 cd..
 
