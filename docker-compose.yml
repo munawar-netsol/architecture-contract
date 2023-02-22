@@ -17,7 +17,7 @@ services:
         
     contract-modification-service:
         container_name: contract-modification-service
-        build: ContractModificationService\app\publish
+        build: ContractModificationService\ContractModificationService\app\publish
         ports:
             - "5002:80"
         depends_on:
