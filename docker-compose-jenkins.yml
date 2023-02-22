@@ -17,33 +17,27 @@ services:
         
     contract-modification-service:
         container_name: contract-modification-service
-        build: ContractModificationService\app\publish
+        build: ContractModificationService/app/publish
         ports:
             - "5002:80"
         depends_on:
         - consul
         - rabbitmq
-        env_file: env-secret-configurations.env
-        environment:            
-            AWS-ACCESS-ID: ${accessid}
-            AWS-SECRET-ID: ${secretid}
+        
 
     contract-activation-service:
         container_name: contract-activation-service
-        build: ContractActivationService\ContractActivationService\app\publish
+        build: ContractActivationService/app/publish
         ports:
             - "5001:80"
         depends_on:
         - consul
         - rabbitmq
-        env_file: env-secret-configurations.env
-        environment:            
-            AWS-ACCESS-ID: ${accessid}
-            AWS-SECRET-ID: ${secretid}
+        
 
     api-gateway-services:
         container_name: api-gateway-services
-        build: PublicApiGateway\app\publish
+        build: PublicApiGateway/app/publish
         ports:
             - "5000:80"
         depends_on:
@@ -52,7 +46,7 @@ services:
 
     microflows:
         container_name: microflows
-        build: Microflows\MicroflowsConfiguration\app\publish
+        build: Microflows/app/publish
         ports:
             - "7000:80"
         depends_on:
