@@ -11,6 +11,8 @@ git push -u origin main
 
 $build
 
+Try Access API Gateway: http://localhost:5000/ContractModification/GetContract
+
 
 To update one container:
 	$docker-compose up -d --no-deps --build contract-modification-service
