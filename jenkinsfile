@@ -6,7 +6,7 @@ pipeline {
 			parallel {
 				stage('Code Build') {
 					steps {
-						sh 'dotnet publish "ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'						
+						sh 'dotnet publish "ContractActivationService/ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'						
 					}
 					
 				}
