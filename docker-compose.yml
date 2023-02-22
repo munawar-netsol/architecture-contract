@@ -27,7 +27,7 @@ services:
 
     contract-activation-service:
         container_name: contract-activation-service
-        build: ContractActivationService\ContractActivationService\app\publish
+        build: ContractActivationService\app\publish
         ports:
             - "5001:80"
         depends_on:
