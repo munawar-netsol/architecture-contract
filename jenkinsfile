@@ -1,0 +1,16 @@
+pipeline {
+    agent any
+	stages
+	{            
+		stage('Four') {
+			parallel {
+				stage('Code Build') {
+					steps {
+						sh 'dotnet publish "ContractActivationService/ContractActivationService.csproj" -c Release -o app/publish'						
+					}
+					
+				}
+			}
+		}
+	}
+}
